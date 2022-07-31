@@ -36,11 +36,11 @@
      "size-limit": [
           {
                "path": "dist/dsa-questions.cjs.production.min.js",
-               "limit": "999 KB"
+               "limit": "10 KB"
           },
           {
                "path": "dist/dsa-questions.esm.js",
-               "limit": "999 KB"
+               "limit": "10 KB"
           }
      ],
      "devDependencies": {
