@@ -22,23 +22,22 @@ export class Array {
 
   removeAtfirst(array: number[]): DeleteFromArray {
     return {
-      deletedItem: array[0],
-      array: array.splice(0, 1)
+      deletedItem: array.splice(0, 1)[0],
+      array: array 
     };
   }
 
   removeAtEnd(array: number[]): DeleteFromArray {
-    const lastIndex = array.length - 1;
     return {
-      deletedItem: array[lastIndex],
-      array: array.splice(lastIndex, 1)
+      deletedItem: array.splice(array.length - 1, 1)[0],
+      array: array
     };
   }
 
   removeAtPosition(array: number[], index: number): DeleteFromArray {
     return {
-      deletedItem: array[index],
-      array: array.splice(index, 1)
+      deletedItem: array.splice(index, 1)[0],
+      array: array
     };
   }
 
@@ -67,7 +66,7 @@ export class Array {
   rotateAntiClockwise(array: number[]): number[] {
     const element  = array[array.length - 1];
     array.splice(array.length - 1, 1);
-    array.push(element);
+    array.splice(0, 0, element);
     return array;
   }
 }
