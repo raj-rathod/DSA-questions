@@ -1,3 +1,4 @@
-export interface Test {
-  test: string;
+export interface DeleteFromArray {
+  deletedItem: number;
+  array: number[];
 }
