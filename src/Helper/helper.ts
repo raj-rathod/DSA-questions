@@ -1,3 +1,1 @@
-export class Helper{
-    
-}
+export class Helper {}

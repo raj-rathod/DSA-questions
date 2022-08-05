@@ -1,1 +1,1 @@
-export class Graph{}
+export class Graph {}

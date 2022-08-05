@@ -1,3 +1,1 @@
-export class String{
-    
-}
+export class String {}
