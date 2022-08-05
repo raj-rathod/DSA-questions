@@ -1,4 +1,4 @@
-export interface DeleteFromArray{
+export interface DeleteFromArray {
   deletedItem: number;
-  array: number[]; 
+  array: number[];
 }
