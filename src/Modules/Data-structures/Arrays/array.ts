@@ -69,4 +69,9 @@ export class Array {
     array.splice(0, 0, element);
     return array;
   }
+
+  reverseArray(array: number[]): number[] {
+    return array.reverse();
+
+  }
 }
