@@ -81,4 +81,9 @@ export class Array {
   reverseArray(array: number[]): number[] {
     return array.reverse();
   }
+
+  sortArray(array: number[]): number[] {
+    array.sort();
+    return array;
+  }
 }
