@@ -81,4 +81,26 @@ export class Array {
   reverseArray(array: number[]): number[] {
     return array.reverse();
   }
+
+  sortArray(array: number[]): number[] {
+    array.sort();
+    return array;
+  }
+
+  seperatePositivesAndNegatives(array: number[]): number[] {
+    let low = 0;
+    let high = array.length - 1;
+    while (low < high) {
+      if (array[low] < 0) {
+        low++;
+      } else if (array[high] > 0) {
+        high--;
+      } else {
+        let temp = array[high];
+        array[high] = array[low];
+        array[low] = temp;
+      }
+    }
+    return array;
+  }
 }
