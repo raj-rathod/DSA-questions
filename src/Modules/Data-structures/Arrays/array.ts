@@ -1,3 +1,4 @@
+import { Helper } from '../../../Helper/helper';
 import { DeleteFromArray } from '../../../Shared/Interface/interface';
 
 export class Array {
@@ -99,6 +100,34 @@ export class Array {
         let temp = array[high];
         array[high] = array[low];
         array[low] = temp;
+      }
+    }
+    return array;
+  }
+
+  sortThreeDigitsArray(array: number[], threeDigits: number[]): number[] {
+    let low = 0;
+    let high = array.length - 1;
+    let tracker = 0;
+    while (low < high) {
+      if (array[low] === threeDigits[0]) {
+        low++;
+        tracker = low;
+      } else if (array[high] === threeDigits[2]) {
+        high--;
+      } else if (
+        array[low] === +threeDigits[1] &&
+        array[high] === +threeDigits[1]
+      ) {
+        if (tracker === high) {
+          break;
+        } else if (array[tracker] !== threeDigits[1]) {
+          array = Helper.swapElement(array, low, tracker);
+        } else {
+          tracker++;
+        }
+      } else {
+        array = Helper.swapElement(array, low, high);
       }
     }
     return array;
