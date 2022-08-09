@@ -132,4 +132,38 @@ export class Array {
     }
     return array;
   }
+
+  findMaximumMinimum(array: number[]): number[] {
+    let max = 0;
+    let min = 0;
+    let index = 0;
+    if (array.length % 2 === 0) {
+      max = Math.max(array[index], array[index + 1]);
+      min = Math.min(array[index], array[index + 1]);
+      index = 2;
+    } else {
+      max = array[index];
+      min = array[index];
+      index = 1;
+    }
+
+    while (index < array.length) {
+      max = Math.max(max, array[index]);
+      max = Math.max(max, array[index + 1]);
+      min = Math.min(min, array[index]);
+      min = Math.min(min, array[index + 1]);
+      index += 2;
+    }
+
+    return [min, max];
+  }
+
+  unionOfTwoSet(arrayA: number[], arrayB: number[]): number[] {
+    arrayB.forEach((item: number) => {
+      if (!arrayA.includes(item)) {
+        arrayA.push(item);
+      }
+    });
+    return arrayA;
+  }
 }
