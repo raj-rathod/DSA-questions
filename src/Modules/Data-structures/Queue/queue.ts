@@ -1,17 +1,25 @@
 export class Queue {
-  enqueue(arr: number[], element: number): number[] {
-    arr.push(element);
-    return arr;
+  queue: number[];
+
+  constructor(data: number[] = []) {
+    this.queue = data;
   }
 
-  dequeue(arr: number[]): number[] {
-    if (arr.length > 0) {
-      arr.splice(0, 1);
+  enqueue(element: number): void {
+    this.queue.push(element);
+  }
+
+  dequeue(): void {
+    if (this.queue.length > 0) {
+      this.queue.splice(0, 1);
     }
-    return arr;
   }
 
-  peek(arr: number[]): number {
-    return arr[0];
+  peek(): number {
+    if (this.queue.length > 0) {
+      return this.queue[0];
+    } else {
+      return NaN;
+    }
   }
 }
