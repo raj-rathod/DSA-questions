@@ -157,4 +157,13 @@ export class Array {
 
     return [min, max];
   }
+
+  unionOfTwoSet(arrayA: number[], arrayB: number[]): number[] {
+    arrayB.forEach((item: number) => {
+      if (!arrayA.includes(item)) {
+        arrayA.push(item);
+      }
+    });
+    return arrayA;
+  }
 }
