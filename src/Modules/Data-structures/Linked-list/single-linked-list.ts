@@ -144,4 +144,21 @@ export class SingleLinkedList {
       return false;
     }
   }
+
+  reverseASingleLinkedList(): SingleLinkNode | null {
+    if (this.head === null) {
+      return this.head;
+    } else {
+      this.currentNode = this.head.next;
+      this.previousNode = this.head;
+      this.previousNode.next = null;
+      while (this.currentNode !== null) {
+        let temp = this.currentNode;
+        this.currentNode = this.currentNode.next;
+        temp.next = this.previousNode;
+        this.previousNode = temp;
+      }
+      return this.previousNode;
+    }
+  }
 }
