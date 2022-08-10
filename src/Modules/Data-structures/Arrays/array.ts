@@ -159,11 +159,12 @@ export class Array {
   }
 
   unionOfTwoSet(arrayA: number[], arrayB: number[]): number[] {
-    arrayB.forEach((item: number) => {
-      if (!arrayA.includes(item)) {
-        arrayA.push(item);
-      }
-    });
-    return arrayA;
+    arrayB = arrayB.filter((item: number) => !arrayA.includes(item));
+    return arrayA.concat(arrayB);
+  }
+
+  intersectionOfTwoSet(arrayA: number[], arrayB: number[]): number[] {
+    arrayB = arrayB.filter((item: number) => arrayA.includes(item));
+    return arrayB;
   }
 }
