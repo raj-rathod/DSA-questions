@@ -21,25 +21,25 @@ export class SingleLinkedList {
       }
     }
   }
-  
-  insertNodeAtFirst(element: number): void{
+
+  insertNodeAtFirst(element: number): void {
     const node = new SingleLinkNode(element);
     this.currentNode = this.head;
     this.head = node;
     this.head.next = this.currentNode;
   }
 
-  insertNodeAtEnd(element: number): void{
+  insertNodeAtEnd(element: number): void {
     const node = new SingleLinkNode(element);
     this.currentNode = this.head;
-    while( this.currentNode.next !== null){
+    while (this.currentNode.next !== null) {
       this.currentNode = this.currentNode.next;
     }
     this.currentNode.next = node;
   }
 
   insertNodeAtPosition(element: number, position: number): void {
-    if(position === 1){
+    if (position === 1) {
       this.insertNodeAtFirst(element);
       return;
     }
@@ -47,9 +47,9 @@ export class SingleLinkedList {
     let count = 1;
     this.currentNode = this.head;
     this.previousNode = this.head;
-    while( this.currentNode.next!== null){
-      if( count === position){
-        break
+    while (this.currentNode.next !== null) {
+      if (count === position) {
+        break;
       }
       count++;
       this.previousNode = this.currentNode;
@@ -57,21 +57,39 @@ export class SingleLinkedList {
     }
     node.next = this.currentNode;
     this.previousNode.next = node;
-   
   }
 
   deleteAtFirst(): void {
-    if( this.head !== null){
+    if (this.head !== null) {
       this.head = this.head.next;
     }
   }
-  
+
   deleteAtEnd(): void {
     this.currentNode = this.head;
-    while (this.currentNode.next != null){
+    while (this.currentNode.next != null) {
       this.previousNode = this.currentNode;
       this.currentNode = this.currentNode.next;
     }
     this.previousNode.next = null;
+  }
+
+  deleteAtPosition(position: number): void {
+    if (position === 1) {
+      this.deleteAtFirst();
+      return;
+    }
+    let count = 0;
+    this.currentNode = this.head;
+    while (this.currentNode.next !== null) {
+      count++;
+      if (count === position) {
+        break;
+      }
+
+      this.previousNode = this.currentNode;
+      this.currentNode = this.currentNode.next;
+    }
+    this.previousNode.next = this.currentNode.next;
   }
 }
