@@ -92,4 +92,12 @@ export class SingleLinkedList {
     }
     this.previousNode.next = this.currentNode.next;
   }
+
+  updateNodeAtFirst(element: number): void {
+    if (this.head !== null) {
+      this.head.data = element;
+    } else {
+      this.head = new SingleLinkNode(element);
+    }
+  }
 }
