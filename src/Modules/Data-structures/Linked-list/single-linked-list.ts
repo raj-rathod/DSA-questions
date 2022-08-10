@@ -100,9 +100,23 @@ export class SingleLinkedList {
       this.head = new SingleLinkNode(element);
     }
   }
-  updateNodeAtEnd(element: number): void{
+
+  updateNodeAtEnd(element: number): void {
     this.currentNode = this.head;
     while (this.currentNode.next != null) {
+      this.currentNode = this.currentNode.next;
+    }
+    this.currentNode.data = element;
+  }
+
+  updateAtPosition(position: number, element: number): void {
+    this.currentNode = this.head;
+    let count = 1;
+    while (this.currentNode.next !== null) {
+      if (position === count) {
+        break;
+      }
+      count++;
       this.currentNode = this.currentNode.next;
     }
     this.currentNode.data = element;
