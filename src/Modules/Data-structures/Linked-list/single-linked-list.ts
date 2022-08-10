@@ -100,4 +100,11 @@ export class SingleLinkedList {
       this.head = new SingleLinkNode(element);
     }
   }
+  updateNodeAtEnd(element: number): void{
+    this.currentNode = this.head;
+    while (this.currentNode.next != null) {
+      this.currentNode = this.currentNode.next;
+    }
+    this.currentNode.data = element;
+  }
 }
