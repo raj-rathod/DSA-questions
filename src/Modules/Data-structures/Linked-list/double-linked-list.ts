@@ -64,4 +64,50 @@ export class DoubleLinkedList {
       newNode.next = this.currentNode;
     }
   }
+
+  deleteAtFirst(): void {
+    if(this.head !== null && this.head.next !== null) {
+      this.currentNode = this.head.next;
+      this.currentNode.prev = null;
+      this.head = this.currentNode;
+    }else{
+      this.head = null;
+    }
+  }
+
+  deleteAtEnd(): void {
+    if (this.head !== null){
+      this.currentNode = this.head;
+      while(this.currentNode.next != null){
+        this.currentNode = this.currentNode.next;
+      }
+      if( this.currentNode.prev != null){
+        this.currentNode.prev.next = null;
+      }else{
+        this.head = null;
+      }
+    }
+  }
+  deleteAtPosition( position: number ): void {
+    if(position === 1 || this.head === null){
+      this.deleteAtFirst();
+      return;
+    }else{
+      let count = 1;
+      this.currentNode = this.head;
+      while(this.currentNode.next != null){
+        if(count === position){
+          break;
+        }
+        count++;
+        this.currentNode = this.currentNode.next;
+      }
+      if(count === position && this.currentNode.next != null){
+        this.currentNode.prev.next =  this.currentNode.next;
+        this.currentNode.next.prev = this.currentNode.prev;
+      }else{
+        this.deleteAtEnd();
+      }
+    }
+  }
 }

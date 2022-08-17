@@ -72,11 +72,16 @@ export class SingleLinkedList {
   deleteAtEnd(): void {
     if (this.head !== null) {
       this.currentNode = this.head;
+      this.previousNode = null;
       while (this.currentNode.next != null) {
         this.previousNode = this.currentNode;
         this.currentNode = this.currentNode.next;
       }
-      this.previousNode.next = null;
+      if(this.previousNode != null) {
+        this.previousNode.next = null;
+      }else{
+        this.head = null;
+      }
     }
   }
 
@@ -96,7 +101,9 @@ export class SingleLinkedList {
       this.previousNode = this.currentNode;
       this.currentNode = this.currentNode.next;
     }
-    this.previousNode.next = this.currentNode.next;
+    if(count === position) {
+      this.previousNode.next = this.currentNode.next;
+    }
   }
 
   updateNodeAtFirst(element: number): void {
@@ -130,7 +137,9 @@ export class SingleLinkedList {
         count++;
         this.currentNode = this.currentNode.next;
       }
-      this.currentNode.data = element;
+      if(count === position){
+        this.currentNode.data = element;
+      }
     } else {
       this.updateNodeAtFirst(element);
     }
