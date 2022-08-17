@@ -31,15 +31,19 @@ export class SingleLinkedList {
 
   insertNodeAtEnd(element: number): void {
     const node = new SingleLinkNode(element);
-    this.currentNode = this.head;
-    while (this.currentNode.next !== null) {
-      this.currentNode = this.currentNode.next;
+    if (this.head != null) {
+      this.currentNode = this.head;
+      while (this.currentNode.next !== null) {
+        this.currentNode = this.currentNode.next;
+      }
+      this.currentNode.next = node;
+    } else {
+      this.head = node;
     }
-    this.currentNode.next = node;
   }
 
   insertNodeAtPosition(element: number, position: number): void {
-    if (position === 1) {
+    if (position === 1 || this.head === null) {
       this.insertNodeAtFirst(element);
       return;
     }
@@ -66,16 +70,23 @@ export class SingleLinkedList {
   }
 
   deleteAtEnd(): void {
-    this.currentNode = this.head;
-    while (this.currentNode.next != null) {
-      this.previousNode = this.currentNode;
-      this.currentNode = this.currentNode.next;
+    if (this.head !== null) {
+      this.currentNode = this.head;
+      this.previousNode = null;
+      while (this.currentNode.next != null) {
+        this.previousNode = this.currentNode;
+        this.currentNode = this.currentNode.next;
+      }
+      if(this.previousNode != null) {
+        this.previousNode.next = null;
+      }else{
+        this.head = null;
+      }
     }
-    this.previousNode.next = null;
   }
 
   deleteAtPosition(position: number): void {
-    if (position === 1) {
+    if (position === 1 || this.head === null) {
       this.deleteAtFirst();
       return;
     }
@@ -90,7 +101,9 @@ export class SingleLinkedList {
       this.previousNode = this.currentNode;
       this.currentNode = this.currentNode.next;
     }
-    this.previousNode.next = this.currentNode.next;
+    if(count === position) {
+      this.previousNode.next = this.currentNode.next;
+    }
   }
 
   updateNodeAtFirst(element: number): void {
@@ -102,32 +115,44 @@ export class SingleLinkedList {
   }
 
   updateNodeAtEnd(element: number): void {
-    this.currentNode = this.head;
-    while (this.currentNode.next != null) {
-      this.currentNode = this.currentNode.next;
+    if (this.head != null) {
+      this.currentNode = this.head;
+      while (this.currentNode.next != null) {
+        this.currentNode = this.currentNode.next;
+      }
+      this.currentNode.data = element;
+    } else {
+      this.updateNodeAtFirst(element);
     }
-    this.currentNode.data = element;
   }
 
   updateNodeAtPosition(position: number, element: number): void {
-    this.currentNode = this.head;
-    let count = 1;
-    while (this.currentNode.next !== null) {
-      if (position === count) {
-        break;
+    if (this.head != null) {
+      this.currentNode = this.head;
+      let count = 1;
+      while (this.currentNode.next !== null) {
+        if (position === count) {
+          break;
+        }
+        count++;
+        this.currentNode = this.currentNode.next;
       }
-      count++;
-      this.currentNode = this.currentNode.next;
+      if(count === position){
+        this.currentNode.data = element;
+      }
+    } else {
+      this.updateNodeAtFirst(element);
     }
-    this.currentNode.data = element;
   }
 
   convertToCircularLinkedList(): void {
-    this.currentNode = this.head;
-    while (this.currentNode.next !== null) {
-      this.currentNode = this.currentNode.next;
+    if (this.head != null) {
+      this.currentNode = this.head;
+      while (this.currentNode.next !== null) {
+        this.currentNode = this.currentNode.next;
+      }
+      this.currentNode.next = this.head;
     }
-    this.currentNode.next = this.head;
   }
 
   isCircularLinkedList(): boolean {
