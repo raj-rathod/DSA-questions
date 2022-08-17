@@ -31,11 +31,15 @@ export class SingleLinkedList {
 
   insertNodeAtEnd(element: number): void {
     const node = new SingleLinkNode(element);
-    this.currentNode = this.head;
-    while (this.currentNode.next !== null) {
-      this.currentNode = this.currentNode.next;
+    if(this.head != null) {
+      this.currentNode = this.head;
+      while (this.currentNode.next !== null) {
+        this.currentNode = this.currentNode.next;
+      }
+      this.currentNode.next = node;
+    }else{
+      this.head = node;
     }
-    this.currentNode.next = node;
   }
 
   insertNodeAtPosition(element: number, position: number): void {
