@@ -109,9 +109,7 @@ export class SingleLinkedList {
   updateNodeAtFirst(element: number): void {
     if (this.head !== null) {
       this.head.data = element;
-    } else {
-      this.head = new SingleLinkNode(element);
-    }
+    } 
   }
 
   updateNodeAtEnd(element: number): void {
@@ -121,9 +119,7 @@ export class SingleLinkedList {
         this.currentNode = this.currentNode.next;
       }
       this.currentNode.data = element;
-    } else {
-      this.updateNodeAtFirst(element);
-    }
+    } 
   }
 
   updateNodeAtPosition(position: number, element: number): void {
@@ -140,9 +136,7 @@ export class SingleLinkedList {
       if(count === position){
         this.currentNode.data = element;
       }
-    } else {
-      this.updateNodeAtFirst(element);
-    }
+    } 
   }
 
   convertToCircularLinkedList(): void {
