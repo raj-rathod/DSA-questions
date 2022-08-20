@@ -31,15 +31,19 @@ export class SingleLinkedList {
 
   insertNodeAtEnd(element: number): void {
     const node = new SingleLinkNode(element);
-    this.currentNode = this.head;
-    while (this.currentNode.next !== null) {
-      this.currentNode = this.currentNode.next;
+    if (this.head != null) {
+      this.currentNode = this.head;
+      while (this.currentNode.next !== null) {
+        this.currentNode = this.currentNode.next;
+      }
+      this.currentNode.next = node;
+    } else {
+      this.head = node;
     }
-    this.currentNode.next = node;
   }
 
   insertNodeAtPosition(element: number, position: number): void {
-    if (position === 1) {
+    if (position === 1 || this.head === null) {
       this.insertNodeAtFirst(element);
       return;
     }
@@ -66,16 +70,23 @@ export class SingleLinkedList {
   }
 
   deleteAtEnd(): void {
-    this.currentNode = this.head;
-    while (this.currentNode.next != null) {
-      this.previousNode = this.currentNode;
-      this.currentNode = this.currentNode.next;
+    if (this.head !== null) {
+      this.currentNode = this.head;
+      this.previousNode = null;
+      while (this.currentNode.next != null) {
+        this.previousNode = this.currentNode;
+        this.currentNode = this.currentNode.next;
+      }
+      if(this.previousNode != null) {
+        this.previousNode.next = null;
+      }else{
+        this.head = null;
+      }
     }
-    this.previousNode.next = null;
   }
 
   deleteAtPosition(position: number): void {
-    if (position === 1) {
+    if (position === 1 || this.head === null) {
       this.deleteAtFirst();
       return;
     }
@@ -90,6 +101,83 @@ export class SingleLinkedList {
       this.previousNode = this.currentNode;
       this.currentNode = this.currentNode.next;
     }
-    this.previousNode.next = this.currentNode.next;
+    if(count === position) {
+      this.previousNode.next = this.currentNode.next;
+    }
+  }
+
+  updateNodeAtFirst(element: number): void {
+    if (this.head !== null) {
+      this.head.data = element;
+    } 
+  }
+
+  updateNodeAtEnd(element: number): void {
+    if (this.head != null) {
+      this.currentNode = this.head;
+      while (this.currentNode.next != null) {
+        this.currentNode = this.currentNode.next;
+      }
+      this.currentNode.data = element;
+    } 
+  }
+
+  updateNodeAtPosition(position: number, element: number): void {
+    if (this.head != null) {
+      this.currentNode = this.head;
+      let count = 1;
+      while (this.currentNode.next !== null) {
+        if (position === count) {
+          break;
+        }
+        count++;
+        this.currentNode = this.currentNode.next;
+      }
+      if(count === position){
+        this.currentNode.data = element;
+      }
+    } 
+  }
+
+  convertToCircularLinkedList(): void {
+    if (this.head != null) {
+      this.currentNode = this.head;
+      while (this.currentNode.next !== null) {
+        this.currentNode = this.currentNode.next;
+      }
+      this.currentNode.next = this.head;
+    }
+  }
+
+  isCircularLinkedList(): boolean {
+    if (this.head === null) {
+      return false;
+    } else {
+      this.currentNode = this.head.next;
+      while (this.currentNode.next !== null) {
+        if (this.currentNode === this.head) {
+          return true;
+        }
+        this.currentNode = this.currentNode.next;
+      }
+      return false;
+    }
+  }
+
+  reverseASingleLinkedList(): SingleLinkNode | null {
+    if (this.head === null) {
+      return this.head;
+    } else {
+      this.currentNode = this.head.next;
+      this.previousNode = this.head;
+      this.previousNode.next = null;
+      while (this.currentNode !== null) {
+        let temp = this.currentNode;
+        this.currentNode = this.currentNode.next;
+        temp.next = this.previousNode;
+        this.previousNode = temp;
+      }
+      return this.previousNode;
+    }
   }
 }

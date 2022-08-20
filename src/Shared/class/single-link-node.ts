@@ -1,6 +1,6 @@
 export class SingleLinkNode {
   data: number;
-  next: any;
+  next: SingleLinkNode | any;
 
   constructor(data: number) {
     this.data = data;
