@@ -128,4 +128,33 @@ export class CircularLinkedList {
             return;
         }
     }
+
+    updateNodeAtFirst(element: number): void {
+        if(this.head != null){
+            this.head.data = element;
+        }
+    }
+
+    updateNodeAtEnd(element: number): void {
+        if(this.head != null){
+            this.lastNode.data = element;
+        }
+    }
+
+    updateNodeAtPosition(element: number, position: number): void {
+        if(this.head != null && position > 0){
+            let count = 1;
+            this.currentNode = this.head;
+            while(this.currentNode.next != this.head){
+                if(position === count){
+                    break;
+                }
+                count++;
+                this.currentNode = this.currentNode.next;
+            }
+            if(position === count){
+                this.currentNode.data =  element;
+            }
+        }
+    }
 }
