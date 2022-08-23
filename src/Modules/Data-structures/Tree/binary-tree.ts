@@ -2,32 +2,39 @@ import { BinaryTreeNode } from "../../../Shared/class/binary-tree-node";
 
 export class BinaryTree {
     root: BinaryTreeNode | any;
-    nodeData: number[];
     constructor(){
         this.root = null;
-        this.nodeData = [];
     }
 
     createBinaryTree(arr: number[]): void{
         this.root = this.insertNodeAtLevel(arr, 0);  
     }
 
-    inOrderTraversal(): number[]{
-       this.nodeData = [];
-       this.inorderTreeData(this.root);
-       return this.nodeData;
+    inOrderTraversal(root: BinaryTreeNode): number[]{
+       let nodeData: number[] = [];
+       if(root === null) return [];
+       nodeData = nodeData.concat(this.inOrderTraversal(root.leftChild));
+       nodeData.push(root.data);
+       nodeData = nodeData.concat(this.inOrderTraversal(root.rightChild));
+       return nodeData;
     }
 
-    preOrderTraversal(): number[]{
-        this.nodeData = [];
-        this.preorderTreeData(this.root);
-        return this.nodeData;
+    preOrderTraversal(root: BinaryTreeNode): number[]{
+       let nodeData: number[] = [];
+       if(root === null) return [];
+       nodeData.push(root.data);
+       nodeData = nodeData.concat(this.inOrderTraversal(root.leftChild));
+       nodeData = nodeData.concat(this.inOrderTraversal(root.rightChild));
+       return nodeData;
     }
 
-    postOrderTraversal(): number[]{
-        this.nodeData = [];
-        this.postorderTreeData(this.root);
-        return this.nodeData;
+    postOrderTraversal(root: BinaryTreeNode): number[]{
+       let nodeData: number[] = [];
+       if(root === null) return [];
+       nodeData = nodeData.concat(this.inOrderTraversal(root.leftChild));
+       nodeData = nodeData.concat(this.inOrderTraversal(root.rightChild));
+       nodeData.push(root.data);
+       return nodeData;
     }
 
     insertNodeAtLevel(arr: number[], index: number): BinaryTreeNode{
@@ -40,38 +47,19 @@ export class BinaryTree {
        return node;
     }
 
-    inorderTreeData(node: BinaryTreeNode): void{
-        if(node === null){
-            return;
-        }
-        this.inorderTreeData(node.leftChild);
-        this.nodeData.push(node.data);
-        this.inorderTreeData(node.rightChild);
-    }
-
-    preorderTreeData(node: BinaryTreeNode): void{
-        if(node === null){
-            return;
-        }
-        this.nodeData.push(node.data);
-        this.preorderTreeData(node.leftChild);
-        this.preorderTreeData(node.rightChild);
-    }
-
-    postorderTreeData(node: BinaryTreeNode): void{
-        if(node === null){
-            return;
-        }
-        this.postorderTreeData(node.leftChild);
-        this.postorderTreeData(node.rightChild);
-        this.nodeData.push(node.data);
-    }
-
     heightOfBinaryTree(root: BinaryTreeNode): number {
        if(root === null) return 0;
        let lHeight = this.heightOfBinaryTree(root.leftChild) + 1;
        let rHeight = this.heightOfBinaryTree(root.rightChild) + 1;
        return Math.max(lHeight, rHeight);
+    }
+
+    totalNodesCount(root: BinaryTreeNode): number {
+        if (root === null) return 0;
+        let count = 1;
+        count += this.totalNodesCount(root.leftChild);
+        count += this.totalNodesCount(root.rightChild);
+        return count;
     }
 
 }
