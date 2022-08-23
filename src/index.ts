@@ -5,3 +5,5 @@ export { Queue } from './Modules/Data-structures/Queue/queue';
 export { SingleLinkedList } from './Modules/Data-structures/Linked-list/single-linked-list';
 export { DoubleLinkedList } from './Modules/Data-structures/Linked-list/double-linked-list';
 export { CircularLinkedList } from './Modules/Data-structures/Linked-list/circular-linked-list';
+export { BinaryTree } from './Modules/Data-structures/Tree/binary-tree';
+ 
