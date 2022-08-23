@@ -23,16 +23,16 @@ export class BinaryTree {
        let nodeData: number[] = [];
        if(root === null) return [];
        nodeData.push(root.data);
-       nodeData = nodeData.concat(this.inOrderTraversal(root.leftChild));
-       nodeData = nodeData.concat(this.inOrderTraversal(root.rightChild));
+       nodeData = nodeData.concat(this.preOrderTraversal(root.leftChild));
+       nodeData = nodeData.concat(this.preOrderTraversal(root.rightChild));
        return nodeData;
     }
 
     postOrderTraversal(root: BinaryTreeNode): number[]{
        let nodeData: number[] = [];
        if(root === null) return [];
-       nodeData = nodeData.concat(this.inOrderTraversal(root.leftChild));
-       nodeData = nodeData.concat(this.inOrderTraversal(root.rightChild));
+       nodeData = nodeData.concat(this.postOrderTraversal(root.leftChild));
+       nodeData = nodeData.concat(this.postOrderTraversal(root.rightChild));
        nodeData.push(root.data);
        return nodeData;
     }
