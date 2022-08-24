@@ -2,8 +2,14 @@ import { BinaryTreeNode } from "../../../Shared/class/binary-tree-node";
 
 export class BinaryTree {
     root: BinaryTreeNode | any;
+    lastNode: BinaryTreeNode | any; 
+    lastNodeParent: BinaryTreeNode | any;
+    findNode: BinaryTreeNode | any;
     constructor(){
         this.root = null;
+        this.lastNode = null;
+        this.lastNodeParent = null;
+        this.findNode = null;
     }
 
     createBinaryTree(arr: number[]): void{
@@ -61,5 +67,65 @@ export class BinaryTree {
         count += this.totalNodesCount(root.rightChild);
         return count;
     }
+
+    getLastNodeItsParent(root: BinaryTreeNode| null, parentNode: BinaryTreeNode | null, level: number){
+        if (root == null){
+            return;
+        } 
+        if(level === 1){
+           this.lastNode = root;
+           this.lastNodeParent = parentNode;
+        }
+        this.getLastNodeItsParent(root.leftChild, root, level - 1);
+        this.getLastNodeItsParent(root.rightChild, root, level - 1);
+    }
+
+    deleteLastNode(root: BinaryTreeNode): void {
+        if(root === null){
+            return;
+        }
+        const treeHeight = this.heightOfBinaryTree(root);
+        this.getLastNodeItsParent(root, null, treeHeight);
+        if(this.lastNode !== null && this.lastNodeParent !== null){
+            if(this.lastNodeParent?.rightChild != null){
+                this.lastNodeParent.rightChild = null;
+            }else{
+                this.lastNodeParent.leftChild = null;
+            }
+        }else{
+            this.root = null;
+        }
+    }
+
+    searchNode(root: BinaryTreeNode, key: number): void {
+       if(root === null || this.findNode != null){
+         return;
+       }
+
+       if(root.data === key){
+          this.findNode = root;
+          return;
+       }
+
+       this.searchNode(root.leftChild, key);
+       this.searchNode(root.rightChild, key);
+    }
+
+    deleteNode(root: BinaryTreeNode, key: number): void {
+      if(root === null){
+        return;
+      }
+      this.searchNode(root, key);
+      if(this.findNode === null){
+         return;
+      }else if(this.findNode.leftChild === null && this.findNode.rightChild === null){
+        this.root = null;
+      }else{
+        this.deleteLastNode(root);
+        this.findNode.data = this.lastNode.data;
+      }
+    }
+
+
 
 }
