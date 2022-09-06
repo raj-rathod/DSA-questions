@@ -77,9 +77,9 @@ export class SingleLinkedList {
         this.previousNode = this.currentNode;
         this.currentNode = this.currentNode.next;
       }
-      if(this.previousNode != null) {
+      if (this.previousNode != null) {
         this.previousNode.next = null;
-      }else{
+      } else {
         this.head = null;
       }
     }
@@ -101,7 +101,7 @@ export class SingleLinkedList {
       this.previousNode = this.currentNode;
       this.currentNode = this.currentNode.next;
     }
-    if(count === position) {
+    if (count === position) {
       this.previousNode.next = this.currentNode.next;
     }
   }
@@ -109,7 +109,7 @@ export class SingleLinkedList {
   updateNodeAtFirst(element: number): void {
     if (this.head !== null) {
       this.head.data = element;
-    } 
+    }
   }
 
   updateNodeAtEnd(element: number): void {
@@ -119,7 +119,7 @@ export class SingleLinkedList {
         this.currentNode = this.currentNode.next;
       }
       this.currentNode.data = element;
-    } 
+    }
   }
 
   updateNodeAtPosition(position: number, element: number): void {
@@ -133,10 +133,10 @@ export class SingleLinkedList {
         count++;
         this.currentNode = this.currentNode.next;
       }
-      if(count === position){
+      if (count === position) {
         this.currentNode.data = element;
       }
-    } 
+    }
   }
 
   convertToCircularLinkedList(): void {
