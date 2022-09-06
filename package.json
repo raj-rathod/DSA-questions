@@ -29,7 +29,7 @@
           "singleQuote": true,
           "trailingComma": "es5"
      },
-     "name": "@raj-rathod/dsa-questions",
+     "name": "@raj-rathod/dsa-methods",
      "author": "Rajesh Rathore",
      "module": "dist/dsa-questions.esm.js",
      "size-limit": [
