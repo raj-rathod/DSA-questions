@@ -66,79 +66,79 @@ export class DoubleLinkedList {
   }
 
   deleteAtFirst(): void {
-    if(this.head !== null && this.head.next !== null) {
+    if (this.head !== null && this.head.next !== null) {
       this.currentNode = this.head.next;
       this.currentNode.prev = null;
       this.head = this.currentNode;
-    }else{
+    } else {
       this.head = null;
     }
   }
 
   deleteAtEnd(): void {
-    if (this.head !== null){
+    if (this.head !== null) {
       this.currentNode = this.head;
-      while(this.currentNode.next != null){
+      while (this.currentNode.next != null) {
         this.currentNode = this.currentNode.next;
       }
-      if( this.currentNode.prev != null){
+      if (this.currentNode.prev != null) {
         this.currentNode.prev.next = null;
-      }else{
+      } else {
         this.head = null;
       }
     }
   }
-  deleteAtPosition( position: number ): void {
-    if(position === 1 || this.head === null){
+  deleteAtPosition(position: number): void {
+    if (position === 1 || this.head === null) {
       this.deleteAtFirst();
       return;
-    }else{
+    } else {
       let count = 1;
       this.currentNode = this.head;
-      while(this.currentNode.next != null){
-        if(count === position){
+      while (this.currentNode.next != null) {
+        if (count === position) {
           break;
         }
         count++;
         this.currentNode = this.currentNode.next;
       }
-      if(count === position && this.currentNode.next != null){
-        this.currentNode.prev.next =  this.currentNode.next;
+      if (count === position && this.currentNode.next != null) {
+        this.currentNode.prev.next = this.currentNode.next;
         this.currentNode.next.prev = this.currentNode.prev;
-      }else{
+      } else {
         this.deleteAtEnd();
       }
     }
   }
 
   updateNodeAtFirst(element: number): void {
-    if(this.head != null){
+    if (this.head != null) {
       this.head.data = element;
     }
   }
 
   updateNodeAtEnd(element: number): void {
-    if(this.head != null){
+    if (this.head != null) {
       this.currentNode = this.head;
-      while(this.currentNode.next != null){
+      while (this.currentNode.next != null) {
         this.currentNode = this.currentNode.next;
       }
-      this.currentNode.data =  element;
+      this.currentNode.data = element;
     }
   }
 
   updateNodeAtPosition(element: number, position: number): void {
-    if(this.head != null){
+    if (this.head != null) {
       this.currentNode = this.head;
-      let count  = 1;
-      while(this.currentNode.next != null){
-        if( position == count){
+      let count = 1;
+      while (this.currentNode.next != null) {
+        if (position == count) {
           break;
         }
         count++;
         this.currentNode = this.currentNode.next;
       }
-      if(count === position){
+      if (count === position) {
         this.currentNode.data = element;
       }
     }
