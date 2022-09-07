@@ -1,12 +1,15 @@
 import { BinaryTreeNode } from '../../../Shared/class/binary-tree-node';
+import { ParentChildNode } from '../../../Shared/Interface/interface';
 
 export class BinarySearchTree {
   root: BinaryTreeNode | any;
   findNode: BinaryTreeNode | any;
+  parentNode: BinaryTreeNode | any;
 
   constructor() {
     this.root = null;
     this.findNode = null;
+    this.parentNode = null;
   }
 
   createBinarySearchTree(arr: number[], isSortedArray: boolean): void {
@@ -69,5 +72,78 @@ export class BinarySearchTree {
     nodeData = nodeData.concat(this.postOrderTraversal(root.rightChild));
     nodeData.push(root.data);
     return nodeData;
+  }
+
+  minimumNode(
+    node: BinaryTreeNode,
+    parentNode: BinaryTreeNode
+  ): ParentChildNode {
+    if (node.leftChild === null) {
+      return {
+        parent: parentNode,
+        node: node,
+      };
+    } else {
+      return this.minimumNode(node.leftChild, node);
+    }
+  }
+
+  findDeleteNode(
+    node: BinaryTreeNode,
+    parentNode: BinaryTreeNode | null,
+    key: number
+  ): ParentChildNode {
+    if (node.data === key || node === null) {
+      return {
+        parent: parentNode,
+        node: node,
+      };
+    } else if (key > node.data) {
+      return this.findDeleteNode(node.rightChild, node, key);
+    } else {
+      return this.findDeleteNode(node.leftChild, node, key);
+    }
+  }
+
+  deleteNode(key: number): void {
+    const deleteNode = this.findDeleteNode(this.root, null, key);
+    if (deleteNode.node === null) {
+      return;
+    }
+    if (
+      deleteNode.node.leftChild === null &&
+      deleteNode.node.rightChild === null
+    ) {
+      if (deleteNode.parent?.leftChild === deleteNode.node) {
+        deleteNode.parent.leftChild = null;
+      } else {
+        deleteNode.parent!.rightChild = null;
+      }
+    } else if (deleteNode.node.leftChild === null) {
+      if (deleteNode.parent?.leftChild === deleteNode.node) {
+        deleteNode.parent.leftChild = deleteNode.node.rightChild;
+      } else {
+        deleteNode.parent!.rightChild = deleteNode.node.rightChild;
+      }
+    } else if (deleteNode.node.rightChild === null) {
+      if (deleteNode.parent?.leftChild === deleteNode.node) {
+        deleteNode.parent.leftChild = deleteNode.node.leftChild;
+      } else {
+        deleteNode.parent!.rightChild = deleteNode.node.leftChild;
+      }
+    } else {
+      const minimumNode = this.minimumNode(deleteNode.node.rightChild, deleteNode.node);
+      if(minimumNode.parent === deleteNode.node) {
+        minimumNode.node!.leftChild = deleteNode.node.leftChild;
+        if (deleteNode.parent?.leftChild === deleteNode.node) {
+          deleteNode.parent.leftChild = minimumNode.node;
+        } else {
+          deleteNode.parent!.rightChild = minimumNode.node;;
+        }
+      }else{
+        deleteNode.node.data = minimumNode.node!.data;
+        minimumNode.parent!.leftChild = null;
+      }
+    }
   }
 }
