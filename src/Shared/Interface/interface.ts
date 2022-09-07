@@ -1,3 +1,5 @@
+import { BinaryTreeNode } from "../class/binary-tree-node";
+
 export interface DeleteFromArray {
   deletedItem: number;
   array: number[];
@@ -17,4 +19,9 @@ export interface MatrixAdjacent {
   leftBottomDiagonal: RowColumnIndex;
   rightTopDiagonal: RowColumnIndex;
   rightBottomDiagonal: RowColumnIndex;
+}
+
+export interface ParentChildNode{
+  parent: BinaryTreeNode | null,
+  node: BinaryTreeNode | null
 }
