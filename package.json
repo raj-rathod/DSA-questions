@@ -53,9 +53,6 @@
      "repository": {
           "type": "git",
           "url": "git+https://github.com/raj-rathod/DSA-questions.git"
-        },
-     "publishConfig": {
-          "@raj-rathod:registry": "https://npm.pkg.github.com"
      },
      "bugs": {
           "url": "https://github.com/raj-rathod/DSA-questions/issues"

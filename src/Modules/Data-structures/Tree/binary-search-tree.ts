@@ -132,15 +132,18 @@ export class BinarySearchTree {
         deleteNode.parent!.rightChild = deleteNode.node.leftChild;
       }
     } else {
-      const minimumNode = this.minimumNode(deleteNode.node.rightChild, deleteNode.node);
-      if(minimumNode.parent === deleteNode.node) {
+      const minimumNode = this.minimumNode(
+        deleteNode.node.rightChild,
+        deleteNode.node
+      );
+      if (minimumNode.parent === deleteNode.node) {
         minimumNode.node!.leftChild = deleteNode.node.leftChild;
         if (deleteNode.parent?.leftChild === deleteNode.node) {
           deleteNode.parent.leftChild = minimumNode.node;
         } else {
-          deleteNode.parent!.rightChild = minimumNode.node;;
+          deleteNode.parent!.rightChild = minimumNode.node;
         }
-      }else{
+      } else {
         deleteNode.node.data = minimumNode.node!.data;
         minimumNode.parent!.leftChild = null;
       }
