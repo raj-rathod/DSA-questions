@@ -20,7 +20,7 @@ export class CircularLinkedList {
         this.currentNode = this.currentNode.next;
       }
     });
-    if (this.head != null) {
+    if (this.head !== null) {
       this.currentNode.next = this.head;
       this.lastNode = this.currentNode;
     }
@@ -28,7 +28,7 @@ export class CircularLinkedList {
 
   insertNodeAtFirst(element: number): void {
     const newNode = new SingleLinkNode(element);
-    if (this.head != null) {
+    if (this.head !== null) {
       newNode.next = this.head;
       this.lastNode.next = newNode;
       this.head = this.lastNode.next;
@@ -41,7 +41,7 @@ export class CircularLinkedList {
 
   insertNodeAtEnd(element: number): void {
     const newNode = new SingleLinkNode(element);
-    if (this.head != null) {
+    if (this.head !== null) {
       newNode.next = this.lastNode.next;
       this.lastNode.next = newNode;
       this.lastNode = newNode;
@@ -54,21 +54,21 @@ export class CircularLinkedList {
 
   insertNodeAtPosition(element: number, position: number): void {
     const newNode = new SingleLinkNode(element);
-    if (this.head != null && position > 0) {
+    if (this.head !== null && position > 0) {
       if (position === 1) {
         this.insertNodeAtFirst(element);
         return;
       }
       let count = 2;
       this.currentNode = this.head;
-      while (this.currentNode.next != this.head) {
+      while (this.currentNode.next !== +this.head) {
         if (position === count) {
           break;
         }
         count++;
         this.currentNode = this.currentNode.next;
       }
-      if (count === position && this.currentNode != this.lastNode) {
+      if (count === position && this.currentNode !== this.lastNode) {
         newNode.next = this.currentNode.next;
         this.currentNode.next = newNode;
       } else if (count === position && this.currentNode === this.lastNode) {
@@ -80,7 +80,7 @@ export class CircularLinkedList {
   }
 
   deleteAtFirst(): void {
-    if (this.head != null && this.head.next != this.head) {
+    if (this.head !== null && this.head.next !== this.head) {
       this.head = this.head.next;
       this.lastNode.next = this.head;
     } else {
@@ -89,10 +89,10 @@ export class CircularLinkedList {
   }
 
   deleteAtEnd(): void {
-    if (this.head != null && this.head.next != this.head) {
+    if (this.head !== null && this.head.next !== this.head) {
       this.currentNode = this.head;
       let previous = this.head;
-      while (this.currentNode.next != this.head) {
+      while (this.currentNode.next !== this.head) {
         previous = this.currentNode;
         this.currentNode = this.currentNode.next;
       }
@@ -103,7 +103,7 @@ export class CircularLinkedList {
   }
 
   deleteAtPosition(position: number): void {
-    if (this.head != null && position > 0) {
+    if (this.head !== null && position > 0) {
       if (position === 1) {
         this.deleteAtFirst();
         return;
@@ -111,7 +111,7 @@ export class CircularLinkedList {
       let count = 1;
       let previous = this.head;
       this.currentNode = this.head;
-      while (this.currentNode.next != this.head) {
+      while (this.currentNode.next !== this.head) {
         if (position === count) {
           break;
         }
@@ -130,22 +130,22 @@ export class CircularLinkedList {
   }
 
   updateNodeAtFirst(element: number): void {
-    if (this.head != null) {
+    if (this.head !== null) {
       this.head.data = element;
     }
   }
 
   updateNodeAtEnd(element: number): void {
-    if (this.head != null) {
+    if (this.head !== null) {
       this.lastNode.data = element;
     }
   }
 
   updateNodeAtPosition(element: number, position: number): void {
-    if (this.head != null && position > 0) {
+    if (this.head !== null && position > 0) {
       let count = 1;
       this.currentNode = this.head;
-      while (this.currentNode.next != this.head) {
+      while (this.currentNode.next !== this.head) {
         if (position === count) {
           break;
         }
