@@ -36,7 +36,7 @@ export class DoubleLinkedList {
       this.head = newNode;
     } else {
       this.currentNode = this.head;
-      while (this.currentNode.next != null) {
+      while (this.currentNode.next !== null) {
         this.currentNode = this.currentNode.next;
       }
       newNode.prev = this.currentNode;
@@ -51,7 +51,7 @@ export class DoubleLinkedList {
     } else {
       this.currentNode = this.head;
       let count = 1;
-      while (this.currentNode.next != null) {
+      while (this.currentNode.next !== null) {
         if (count === position) {
           break;
         }
@@ -78,10 +78,10 @@ export class DoubleLinkedList {
   deleteAtEnd(): void {
     if (this.head !== null) {
       this.currentNode = this.head;
-      while (this.currentNode.next != null) {
+      while (this.currentNode.next !== null) {
         this.currentNode = this.currentNode.next;
       }
-      if (this.currentNode.prev != null) {
+      if (this.currentNode.prev !== null) {
         this.currentNode.prev.next = null;
       } else {
         this.head = null;
@@ -95,14 +95,14 @@ export class DoubleLinkedList {
     } else {
       let count = 1;
       this.currentNode = this.head;
-      while (this.currentNode.next != null) {
+      while (this.currentNode.next !== null) {
         if (count === position) {
           break;
         }
         count++;
         this.currentNode = this.currentNode.next;
       }
-      if (count === position && this.currentNode.next != null) {
+      if (count === position && this.currentNode.next !== null) {
         this.currentNode.prev.next = this.currentNode.next;
         this.currentNode.next.prev = this.currentNode.prev;
       } else {
@@ -112,15 +112,15 @@ export class DoubleLinkedList {
   }
 
   updateNodeAtFirst(element: number): void {
-    if (this.head != null) {
+    if (this.head !== null) {
       this.head.data = element;
     }
   }
 
   updateNodeAtEnd(element: number): void {
-    if (this.head != null) {
+    if (this.head !== null) {
       this.currentNode = this.head;
-      while (this.currentNode.next != null) {
+      while (this.currentNode.next !== null) {
         this.currentNode = this.currentNode.next;
       }
       this.currentNode.data = element;
@@ -128,11 +128,11 @@ export class DoubleLinkedList {
   }
 
   updateNodeAtPosition(element: number, position: number): void {
-    if (this.head != null) {
+    if (this.head !== null) {
       this.currentNode = this.head;
       let count = 1;
-      while (this.currentNode.next != null) {
-        if (position == count) {
+      while (this.currentNode.next !== null) {
+        if (position === count) {
           break;
         }
         count++;
