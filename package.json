@@ -1,5 +1,5 @@
 {
-     "version": "0.2.0",
+     "version": "0.2.1",
      "license": "MIT",
      "main": "dist/index.js",
      "typings": "dist/index.d.ts",
@@ -30,6 +30,7 @@
           "trailingComma": "es5"
      },
      "name": "@raj-rathod/dsa-methods",
+     "description": "This package is developed for functionality of data structures and algorithms, some standard examples of algorithms are implemented",
      "author": "Rajesh Rathore",
      "module": "dist/dsa-questions.esm.js",
      "size-limit": [
@@ -50,6 +51,21 @@
           "tslib": "^2.4.0",
           "typescript": "^4.7.4"
      },
+     "keywords": [
+          "Dsa",
+          "Data structures and algorithms",
+          "leetcode solution",
+          "algorithms",
+          "data structures",
+          "faang interviews",
+          "dsa learning series",
+          "dsa questions",
+          "dsa practice",
+          "dsa methods",
+          "faang preparation",
+          "faang questions",
+          "dsa project"
+     ],
      "repository": {
           "type": "git",
           "url": "git+https://github.com/raj-rathod/DSA-questions.git"
