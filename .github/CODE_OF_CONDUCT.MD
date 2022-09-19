@@ -23,7 +23,6 @@ and learning from the experience
 overall community
 
 Examples of unacceptable behavior include:
-
 * The use of sexualized language or imagery, and sexual attention or
 advances
 * Trolling, insulting or derogatory comments, and personal or political attacks
