@@ -149,4 +149,19 @@ export class BinarySearchTree {
       }
     }
   }
+
+  heightOfBinaryTree(root: BinaryTreeNode): number {
+    if (root === null) return 0;
+    let lHeight = this.heightOfBinaryTree(root.leftChild) + 1;
+    let rHeight = this.heightOfBinaryTree(root.rightChild) + 1;
+    return Math.max(lHeight, rHeight);
+  }
+
+  totalNodesCount(root: BinaryTreeNode): number {
+    if (root === null) return 0;
+    let count = 1;
+    count += this.totalNodesCount(root.leftChild);
+    count += this.totalNodesCount(root.rightChild);
+    return count;
+  }
 }
