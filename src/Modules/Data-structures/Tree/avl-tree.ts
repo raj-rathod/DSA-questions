@@ -146,4 +146,19 @@ export class AvlTree {
     nodeData.push(root.data);
     return nodeData;
   }
+
+  heightOfAvlTree(root: AvlTreeNode): number {
+    if (root === null) return 0;
+    let lHeight = this.heightOfAvlTree(root.leftChild) + 1;
+    let rHeight = this.heightOfAvlTree(root.rightChild) + 1;
+    return Helper.maximum(lHeight, rHeight);
+  }
+
+  totalNodesCount(root: AvlTreeNode): number {
+    if (root === null) return 0;
+    let count = 1;
+    count += this.totalNodesCount(root.leftChild);
+    count += this.totalNodesCount(root.rightChild);
+    return count;
+  }
 }
