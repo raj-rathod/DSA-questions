@@ -7,3 +7,4 @@ export { DoubleLinkedList } from './Modules/Data-structures/Linked-list/double-l
 export { CircularLinkedList } from './Modules/Data-structures/Linked-list/circular-linked-list';
 export { BinaryTree } from './Modules/Data-structures/Tree/binary-tree';
 export { BinarySearchTree } from './Modules/Data-structures/Tree/binary-search-tree';
+export { AvlTree } from './Modules/Data-structures/Tree/avl-tree'

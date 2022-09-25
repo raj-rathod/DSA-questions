@@ -138,8 +138,8 @@ export class Array {
     let min = 0;
     let index = 0;
     if (array.length % 2 === 0) {
-      max = Math.max(array[index], array[index + 1]);
-      min = Math.min(array[index], array[index + 1]);
+      max = Helper.maximum(array[index], array[index + 1]);
+      min = Helper.minimum(array[index], array[index + 1]);
       index = 2;
     } else {
       max = array[index];
@@ -148,10 +148,10 @@ export class Array {
     }
 
     while (index < array.length) {
-      max = Math.max(max, array[index]);
-      max = Math.max(max, array[index + 1]);
-      min = Math.min(min, array[index]);
-      min = Math.min(min, array[index + 1]);
+      max = Helper.maximum(max, array[index]);
+      max = Helper.maximum(max, array[index + 1]);
+      min = Helper.minimum(min, array[index]);
+      min = Helper.minimum(min, array[index + 1]);
       index += 2;
     }
 
