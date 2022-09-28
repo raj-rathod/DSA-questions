@@ -12,9 +12,9 @@ export class Helper {
 
   static maximum = (firstNumber: number, secondNumber: number): number => {
     return Math.max(firstNumber, secondNumber);
-  }
+  };
 
   static minimum = (firstNumber: number, secondNumber: number): number => {
     return Math.min(firstNumber, secondNumber);
-  }
+  };
 }

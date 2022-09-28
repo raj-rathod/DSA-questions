@@ -13,7 +13,7 @@ export class Graph {
   }
 
   insertVertex(): number[][] {
-    if (this.adjacencyMatrix.length == 0) return [[]];
+    if (this.adjacencyMatrix.length === 0) return [[]];
     this.adjacencyMatrix.forEach(row => {
       row.push(0);
     });
@@ -65,22 +65,25 @@ export class Graph {
   }
 
   depthFirstSearch(): number[] {
-    if(this.adjacencyMatrix.length === 0) return [];
+    if (this.adjacencyMatrix.length === 0) return [];
     const visitedArray = [1];
     const stack = new Stack([1]);
-    while(stack.stack.length > 0) {
-        let count = 0;
-        for(let i = 0; i < this.adjacencyMatrix[stack.peek()-1].length; i++) {
-           count++;
-           if (!visitedArray.includes(i + 1) && this.adjacencyMatrix[stack.peek()-1][i] > 0) {
-                stack.push(i + 1);
-                visitedArray.push(i + 1);
-                break;
-           }  
+    while (stack.stack.length > 0) {
+      let count = 0;
+      for (let i = 0; i < this.adjacencyMatrix[stack.peek() - 1].length; i++) {
+        count++;
+        if (
+          !visitedArray.includes(i + 1) &&
+          this.adjacencyMatrix[stack.peek() - 1][i] > 0
+        ) {
+          stack.push(i + 1);
+          visitedArray.push(i + 1);
+          break;
         }
-        if(count > this.adjacencyMatrix[stack.peek()-1].length-1){
-            stack.pop();
-        }
+      }
+      if (count > this.adjacencyMatrix[stack.peek() - 1].length - 1) {
+        stack.pop();
+      }
     }
     return visitedArray;
   }
