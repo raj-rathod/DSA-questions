@@ -9,3 +9,4 @@ export { BinaryTree } from './Modules/Data-structures/Tree/binary-tree';
 export { BinarySearchTree } from './Modules/Data-structures/Tree/binary-search-tree';
 export { AvlTree } from './Modules/Data-structures/Tree/avl-tree';
 export { Graph } from './Modules/Data-structures/Graph/graph';
+export { Trie } from './Modules/Data-structures/Trie/trie';
