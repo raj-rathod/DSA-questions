@@ -1,3 +1,4 @@
+import { Helper } from '../../../Helper/helper';
 import { BinaryTreeNode } from '../../../Shared/class/binary-tree-node';
 import { ParentChildNode } from '../../../Shared/Interface/interface';
 
@@ -148,5 +149,20 @@ export class BinarySearchTree {
         minimumNode.parent!.leftChild = null;
       }
     }
+  }
+
+  heightOfBinaryTree(root: BinaryTreeNode): number {
+    if (root === null) return 0;
+    let lHeight = this.heightOfBinaryTree(root.leftChild) + 1;
+    let rHeight = this.heightOfBinaryTree(root.rightChild) + 1;
+    return Helper.maximum(lHeight, rHeight);
+  }
+
+  totalNodesCount(root: BinaryTreeNode): number {
+    if (root === null) return 0;
+    let count = 1;
+    count += this.totalNodesCount(root.leftChild);
+    count += this.totalNodesCount(root.rightChild);
+    return count;
   }
 }

@@ -9,4 +9,12 @@ export class Helper {
     array[secondIndex] = temp;
     return array;
   }
+
+  static maximum = (firstNumber: number, secondNumber: number): number => {
+    return Math.max(firstNumber, secondNumber);
+  };
+
+  static minimum = (firstNumber: number, secondNumber: number): number => {
+    return Math.min(firstNumber, secondNumber);
+  };
 }
