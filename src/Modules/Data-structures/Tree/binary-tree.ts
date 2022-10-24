@@ -103,7 +103,7 @@ export class BinaryTree {
   }
 
   searchNode(root: BinaryTreeNode, key: number): void {
-    if (root === null || this.findNode != null) {
+    if (root === null) {
       return;
     }
 
