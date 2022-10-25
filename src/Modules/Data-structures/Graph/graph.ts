@@ -12,6 +12,18 @@ export class Graph {
     return (this.adjacencyMatrix = inputMatrix);
   }
 
+  totalEdges(): number {
+    let count = 0;
+    this.adjacencyMatrix.forEach(row =>{
+       row.forEach(column =>{
+         if(column > 0){  // if column is greater than zero it means that is the edge
+           count++;
+         }
+       });
+    });
+    return count;
+  }
+
   insertVertex(): number[][] {
     if (this.adjacencyMatrix.length === 0) return [[]];
     this.adjacencyMatrix.forEach(row => {
