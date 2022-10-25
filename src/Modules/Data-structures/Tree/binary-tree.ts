@@ -5,6 +5,7 @@ export class BinaryTree {
   root: BinaryTreeNode | any;
   lastNode: BinaryTreeNode | any;
   lastNodeParent: BinaryTreeNode | any;
+  deleteNodeParent: BinaryTreeNode | any;
   findNode: BinaryTreeNode | any;
   constructor() {
     this.root = null;
@@ -116,18 +117,39 @@ export class BinaryTree {
     this.searchNode(root.rightChild, key);
   }
 
+  findDeleteNode(
+    node: BinaryTreeNode,
+    parentNode: BinaryTreeNode | null,
+    key: number
+  ): void {
+    if(node === null){
+      return;
+    }
+    if (node.data === key) {
+      this.findNode = node;
+      this.deleteNodeParent = parentNode;
+    }
+    this.findDeleteNode(node.rightChild, node, key);
+    this.findDeleteNode(node.leftChild, node, key);
+    
+  }
+
   deleteNode(root: BinaryTreeNode, key: number): void {
     if (root === null) {
       return;
     }
-    this.searchNode(root, key);
-    if (this.findNode === null) {
+    this.findDeleteNode(root, null, key);
+    if (this.findNode.node === null) {
       return;
     } else if (
       this.findNode.leftChild === null &&
       this.findNode.rightChild === null
     ) {
-      this.root = null;
+      if (this.deleteNodeParent?.leftChild === this.findNode) {
+        this.deleteNodeParent.leftChild = null;
+      } else {
+        this.deleteNodeParent.rightChild = null;
+      }
     } else {
       this.deleteLastNode(root);
       this.findNode.data = this.lastNode.data;
