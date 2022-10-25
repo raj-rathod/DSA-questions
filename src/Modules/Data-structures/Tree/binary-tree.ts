@@ -103,6 +103,25 @@ export class BinaryTree {
     }
   }
 
+  insertNode(root: BinaryTreeNode, element:number): void {
+    const node =  new BinaryTreeNode(element);
+    if (root === null) {
+      this.root = node;
+      return;
+    }
+    const treeHeight = this.heightOfBinaryTree(root);
+    this.getLastNodeItsParent(root, null, treeHeight);
+    if (this.lastNode !== null && this.lastNodeParent !== null) {
+      if (this.lastNodeParent?.rightChild === null) {
+        this.lastNodeParent.rightChild = node;
+      } else if(this.lastNodeParent?.leftChild === null) {
+        this.lastNodeParent.leftChild = node;
+      }else{
+        this.lastNode.leftChild = node;
+      }
+    }
+  }
+
   searchNode(root: BinaryTreeNode, key: number): void {
     if (root === null) {
       return;
