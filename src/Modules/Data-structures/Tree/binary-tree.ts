@@ -5,6 +5,7 @@ export class BinaryTree {
   root: BinaryTreeNode | any;
   lastNode: BinaryTreeNode | any;
   lastNodeParent: BinaryTreeNode | any;
+  deleteNodeParent: BinaryTreeNode | any;
   findNode: BinaryTreeNode | any;
   constructor() {
     this.root = null;
@@ -102,8 +103,27 @@ export class BinaryTree {
     }
   }
 
+  insertNode(root: BinaryTreeNode, element:number): void {
+    const node =  new BinaryTreeNode(element);
+    if (root === null) {
+      this.root = node;
+      return;
+    }
+    const treeHeight = this.heightOfBinaryTree(root);
+    this.getLastNodeItsParent(root, null, treeHeight);
+    if (this.lastNode !== null && this.lastNodeParent !== null) {
+      if (this.lastNodeParent?.rightChild === null) {
+        this.lastNodeParent.rightChild = node;
+      } else if(this.lastNodeParent?.leftChild === null) {
+        this.lastNodeParent.leftChild = node;
+      }else{
+        this.lastNode.leftChild = node;
+      }
+    }
+  }
+
   searchNode(root: BinaryTreeNode, key: number): void {
-    if (root === null || this.findNode != null) {
+    if (root === null) {
       return;
     }
 
@@ -116,18 +136,39 @@ export class BinaryTree {
     this.searchNode(root.rightChild, key);
   }
 
+  findDeleteNode(
+    node: BinaryTreeNode,
+    parentNode: BinaryTreeNode | null,
+    key: number
+  ): void {
+    if(node === null){
+      return;
+    }
+    if (node.data === key) {
+      this.findNode = node;
+      this.deleteNodeParent = parentNode;
+    }
+    this.findDeleteNode(node.rightChild, node, key);
+    this.findDeleteNode(node.leftChild, node, key);
+    
+  }
+
   deleteNode(root: BinaryTreeNode, key: number): void {
     if (root === null) {
       return;
     }
-    this.searchNode(root, key);
-    if (this.findNode === null) {
+    this.findDeleteNode(root, null, key);
+    if (this.findNode.node === null) {
       return;
     } else if (
       this.findNode.leftChild === null &&
       this.findNode.rightChild === null
     ) {
-      this.root = null;
+      if (this.deleteNodeParent?.leftChild === this.findNode) {
+        this.deleteNodeParent.leftChild = null;
+      } else {
+        this.deleteNodeParent.rightChild = null;
+      }
     } else {
       this.deleteLastNode(root);
       this.findNode.data = this.lastNode.data;

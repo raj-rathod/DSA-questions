@@ -94,7 +94,7 @@ export class BinarySearchTree {
     parentNode: BinaryTreeNode | null,
     key: number
   ): ParentChildNode {
-    if (node.data === key || node === null) {
+    if (node?.data === key || node === null) {
       return {
         parent: parentNode,
         node: node,
@@ -103,6 +103,19 @@ export class BinarySearchTree {
       return this.findDeleteNode(node.rightChild, node, key);
     } else {
       return this.findDeleteNode(node.leftChild, node, key);
+    }
+  }
+
+  searchNode(
+    node: BinaryTreeNode,
+    key: number
+  ): BinaryTreeNode  {
+    if (node?.data === key || node === null) {
+      return node;
+    } else if (key > node.data) {
+      return this.searchNode(node.rightChild, key);
+    } else {
+      return this.searchNode(node.leftChild, key);
     }
   }
 
@@ -115,20 +128,26 @@ export class BinarySearchTree {
       deleteNode.node.leftChild === null &&
       deleteNode.node.rightChild === null
     ) {
-      if (deleteNode.parent?.leftChild === deleteNode.node) {
-        deleteNode.parent.leftChild = null;
+      if(deleteNode.parent === null){
+        this.root = null;
+      }else if (deleteNode.parent?.leftChild === deleteNode.node) {
+        deleteNode.parent!.leftChild = null;
       } else {
         deleteNode.parent!.rightChild = null;
       }
     } else if (deleteNode.node.leftChild === null) {
-      if (deleteNode.parent?.leftChild === deleteNode.node) {
-        deleteNode.parent.leftChild = deleteNode.node.rightChild;
+      if(deleteNode.parent === null) {
+        this.root = deleteNode.node.rightChild;
+      }else if (deleteNode.parent?.leftChild === deleteNode.node) {
+        deleteNode.parent!.leftChild = deleteNode.node.rightChild;
       } else {
         deleteNode.parent!.rightChild = deleteNode.node.rightChild;
       }
     } else if (deleteNode.node.rightChild === null) {
-      if (deleteNode.parent?.leftChild === deleteNode.node) {
-        deleteNode.parent.leftChild = deleteNode.node.leftChild;
+      if(deleteNode.parent === null){
+         this.root = deleteNode.node.leftChild;
+      }else if (deleteNode.parent?.leftChild === deleteNode.node) {
+        deleteNode.parent!.leftChild = deleteNode.node.leftChild;
       } else {
         deleteNode.parent!.rightChild = deleteNode.node.leftChild;
       }
@@ -139,7 +158,9 @@ export class BinarySearchTree {
       );
       if (minimumNode.parent === deleteNode.node) {
         minimumNode.node!.leftChild = deleteNode.node.leftChild;
-        if (deleteNode.parent?.leftChild === deleteNode.node) {
+        if(deleteNode.parent === null){
+          this.root = minimumNode.node;
+        }else if (deleteNode.parent?.leftChild === deleteNode.node) {
           deleteNode.parent.leftChild = minimumNode.node;
         } else {
           deleteNode.parent!.rightChild = minimumNode.node;
