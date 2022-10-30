@@ -19,3 +19,4 @@ export { HashTable } from './Modules/Data-structures/Hash-table/hash-table';
 
 // -------------------------------- Algorithms ----------------------------------//
 export { SelectionSort } from './Modules/Algorithms/Sorts/selection-sort';
+export { InsertionSort } from './Modules/Algorithms/Sorts/insertion-sort';
