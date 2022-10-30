@@ -16,3 +16,6 @@ export { Graph } from './Modules/Data-structures/Graph/graph';
 export { HashTable } from './Modules/Data-structures/Hash-table/hash-table';
 
 // -------------------------------- End  ----------------------------------------//
+
+// -------------------------------- Algorithms ----------------------------------//
+export { SelectionSort } from './Modules/Algorithms/Sorts/selection-sort';
