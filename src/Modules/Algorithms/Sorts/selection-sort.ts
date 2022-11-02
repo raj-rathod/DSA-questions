@@ -2,7 +2,7 @@ import { Helper } from "../../../Helper/helper";
 
 export class SelectionSort{
     
-    selctionSort(arr: number[]): number[]{
+    selctionSort(arr: number[]): void {
         const n = arr.length;
         let i = 0;
         while(i < n-1){
@@ -21,7 +21,6 @@ export class SelectionSort{
            }
            i++;
         }
-        return arr;
     }
 
 }
