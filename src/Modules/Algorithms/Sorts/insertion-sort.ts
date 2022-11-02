@@ -2,7 +2,7 @@ import { Helper } from "../../../Helper/helper";
 
 export class InsertionSort {
 
-    insertionSort(arr: number[]): number[] {
+    insertionSort(arr: number[]): void {
         let i = 0;
         const n = arr.length;
         while(i < n) {
@@ -13,6 +13,5 @@ export class InsertionSort {
             }
             i++;
         }
-        return arr;
     }
 }
