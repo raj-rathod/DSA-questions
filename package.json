@@ -16,7 +16,8 @@
           "lint": "tsdx lint --fix",
           "prepare": "tsdx build",
           "size": "size-limit",
-          "analyze": "size-limit --why"
+          "analyze": "size-limit --why",
+          "test-package":"cd package_test && node package_test"
      },
      "husky": {
           "hooks": {
